@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地球 ↔ 米勒星 时间换算 | 星际穿越时间计算器</title>
+    <meta name="description" content="基于电影《星际穿越》设定的时间换算工具，计算地球时间与米勒星时间的转换。米勒星1小时约等于地球7年，支持日期范围计算。">
+    <meta name="keywords" content="星际穿越,时间换算,米勒星,地球时间,时间计算器,相对论,黑洞,科幻">
+    <meta name="author" content="Miller Time Dilation">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="地球 ↔ 米勒星 时间换算 | 星际穿越时间计算器">
+    <meta property="og:description" content="基于电影《星际穿越》设定的时间换算工具，计算地球时间与米勒星时间的转换。">
+    <meta property="og:url" content="https://millertime.example.com">
+    <meta property="og:site_name" content="Miller Time Dilation">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="地球 ↔ 米勒星 时间换算 | 星际穿越时间计算器">
+    <meta property="twitter:description" content="基于电影《星际穿越》设定的时间换算工具，计算地球时间与米勒星时间的转换。">
+    
+    <!-- 结构化数据 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "地球 ↔ 米勒星 时间换算",
+        "description": "基于电影《星际穿越》设定的时间换算工具，计算地球时间与米勒星时间的转换。",
+        "url": "https://millertime.example.com",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <!-- 性能优化 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://millertime.example.com">
+    
+    <!-- 移动端优化 -->
+    <meta name="theme-color" content="#06070a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="米勒星时间换算">
+    
+    <!-- 性能提示 -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+</head>
+<body>
+    <div id="bg">
+        <video class="black-hole-video" autoplay muted loop playsinline>
+            <source src="mp4/黑洞.mp4" type="video/mp4">
+        </video>
+        <audio class="background-music" autoplay loop>
+            <source src="mp3/backgroundMusic.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <main class="app">
+        <header class="header">
+            <h1>地球 ↔ 米勒星 时间换算</h1>
+            <p>根据电影《星际穿越》设定：<strong>米勒星 1 小时 ≈ 地球 7 年</strong></p>
+        </header>
+
+        <article class="calculator-section">
+            <h2 class="sr-only">时间换算计算器</h2>
+            
+            <section class="panels" aria-label="时间输入面板">
+                <fieldset class="panel" id="earth-panel">
+                    <legend>地球时间</legend>
+                    <div class="row date-row">
+                        <label for="earth-start-date">开始日期
+                            <input type="date" id="earth-start-date" aria-label="选择开始日期">
+                        </label>
+                        <label for="earth-end-date">结束日期
+                            <input type="date" id="earth-end-date" aria-label="选择结束日期">
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="panel" id="miller-panel">
+                    <legend>米勒星时间</legend>
+                    <div class="row">
+                        <label for="miller-hours">小时
+                            <input type="number" id="miller-hours" min="0" step="0.001" value="0" readonly aria-label="米勒星小时数">
+                        </label>
+                        <label for="miller-minutes">分钟
+                            <input type="number" id="miller-minutes" min="0" step="0.001" value="0" readonly aria-label="米勒星分钟数">
+                        </label>
+                        <label for="miller-seconds">秒
+                            <input type="number" id="miller-seconds" min="0" step="0.001" value="0" readonly aria-label="米勒星秒数">
+                        </label>
+                    </div>
+                </fieldset>
+            </section>
+
+            <section class="readout" aria-live="polite" role="status">
+                <h3 class="sr-only">计算结果</h3>
+                <div id="summary" aria-label="时间换算结果"></div>
+                <small>说明：为简化换算，采用平均回归年 365.25 天。</small>
+            </section>
+        </article>
+
+        <!-- 音乐播放提示 -->
+        <div id="music-prompt" class="music-prompt" style="display: none;">
+            <div class="music-prompt-content">
+                <p>🎵 点击任意位置开始播放背景音乐</p>
+                <button id="play-music-btn" class="play-music-btn">播放音乐</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <span>© <span id="year"></span> Miller Time Dilation · 仅用于娱乐与科普</span>
+        </footer>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
+
+

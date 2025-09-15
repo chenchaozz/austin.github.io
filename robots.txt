@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# 允许搜索引擎抓取所有内容
+Sitemap: https://millertime.example.com/sitemap.xml
+
+# 禁止抓取媒体文件（可选）
+Disallow: /mp3/
+Disallow: /mp4/
+Disallow: /images/
